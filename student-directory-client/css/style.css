@@ -1,0 +1,10 @@
+body{
+  font-family: sans-serif;
+}
+div{
+  font-size: 12px;
+  line-height: 16px;
+}
+input, label{
+  padding: 2px 10px;
+}
