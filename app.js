@@ -15,7 +15,12 @@ var users = require('./routes/users');
 var students = require('./routes/students');
 
 var app = express();
+var jwt = require('express-jwt');
 
+var jwtCheck = jwt({
+  secret: new Buffer(process.env.TOKEN_SECRET, 'base64'),
+  audience: process.env.TOKEN_CLIENTID
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -31,6 +36,7 @@ app.use(cors())
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/students', jwtCheck);
 app.use('/students', students);
 
 // catch 404 and forward to error handler
